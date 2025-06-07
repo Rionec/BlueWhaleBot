@@ -1,20 +1,6 @@
 import telebot
 import random
-import openpyxl
 import pandas as pd
-from openpyxl import load_workbook
-
-#advices_list = openpyxl.load_workbook(Advices.xlsx)
-
-#adv = pd.read_excel('Advices.xlsx', sheet_name='Лист1')
-#print(adv.head())
-#filepath = r"C:\Users\user.COMP-512-13\Desktop\ИСИП\БлюВейл\Advices.xlsx"
-
-adv = pd.read_excel("Advices.xlsx")
-rows = adv.values.tolist()
-
-#global adv
-
 from telebot import types
 
 from The_Token import API_TOKEN
@@ -41,8 +27,7 @@ def help(message: types.Message):
 def callback_inline(call):
     if call.message:
         if call.data == "random_advice_pressed":
-            filepath = r"C:\Users\user.COMP-512-13\Desktop\ИСИП\БлюВейл\Advices.xlsx"
-            adv = pd.read_excel(filepath)
+            adv = pd.read_excel("Advices.xlsx")
             rows = adv.values.tolist()
             random_adv = random.choice(rows)
             bot.send_message(call.message.chat.id, "Вот ваш совет:")
